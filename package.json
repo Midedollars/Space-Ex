@@ -4,5 +4,14 @@
     "express": "^4.17.2",
     "mongoose": "^6.1.10",
     "nodemon": "^2.0.15"
+  },
+  "name": "Space",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/Midedollars/Space-Ex.git",
+  "author": "Midedollars <olanrewajuolamide100@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon ./src/app.js"
   }
 }
