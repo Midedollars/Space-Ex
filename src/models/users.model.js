@@ -1,32 +1,30 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-
-
-const createSchema = new Schema({
-  aptImage: {
+const usersSchema = new Schema({
+  firstName: {
     type: String,
     required: true,
   },
 
-  emailAddress: {
+  lastName: {
     type: String,
     required: true,
   },
 
-  apartmentName: {
+  email: {
     type: String,
     required: true,
   },
   
-  address: {
+  phoneNumber: {
       type: String,
       required: true,
   }
 });
 
 // converting the schema to a model
-const apartmentModel = mongoose.model("Apartments", createSchema);
+const usersModel = mongoose.model("Users", usersSchema);
 
 // to make the mmodel accessible to other files
-module.exports = apartmentModel;
+module.exports = usersModel;
