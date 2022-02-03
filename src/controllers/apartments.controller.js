@@ -49,7 +49,7 @@ exports.addApartments = async (req, res, next) => {
 
 
 
-      
+
     exports.fetchSingleApartments = async (req, res, next) => {
         try {
 
@@ -60,6 +60,7 @@ exports.addApartments = async (req, res, next) => {
           if (!singleApartments) {
             return res.status(404).json({
               success: false,
+              unique: true,
               message: "Apartment Not Found!",
             });
           }
