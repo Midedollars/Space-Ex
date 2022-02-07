@@ -28,17 +28,11 @@ exports.addUsers = async (req, res, next) => {
 
 
 
-    exports.addUsers = async (req, res, next) => {
+    exports.countUsers = async (req, res, next) => {
         try {
-            const {firstName, lastName, email, phoneNumber} = req.body;
+            // const {firstName, lastName, email, phoneNumber} = req.body;
     
-            const count = new users({ 
-                firstName, 
-                lastName,
-                email, 
-                phoneNumber
-             });
-            await newUser.countUsers();
+            const count = await users.countDocuments()
             
             return res.status(201).json({
                 success: true,

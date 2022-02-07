@@ -4,10 +4,7 @@ const Schema = mongoose.Schema;
 
 
 const createSchema = new Schema({
-  aptImage: {
-    type: String,
-    required: true,
-  },
+ 
 
   emailAddress: {
     type: String,
@@ -18,7 +15,10 @@ const createSchema = new Schema({
     type: String,
     required: true,
   },
-  
+   aptImage: {
+    type: String,
+    required: true,
+  },
   address: {
       type: String,
       required: true,

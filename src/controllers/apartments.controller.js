@@ -2,10 +2,12 @@ const apartments = require("../models/apartments.model");
 
 exports.addApartments = async (req, res, next) => {
     try {
-        const {aptImage, emailAddress, apartmentName, address} = req.body;
+        const {emailAddress, apartmentName, address} = req.body;
+
+        const {path} = req.file
 
         const newApartment = new apartments({ 
-            aptImage, 
+            aptImage:path, 
             emailAddress, 
             apartmentName, 
             address
@@ -18,6 +20,7 @@ exports.addApartments = async (req, res, next) => {
         })
      }
      catch (error) {
+       console.log(error)
          return res.status(500).json({
              success: false,
              message: "error",
@@ -28,7 +31,7 @@ exports.addApartments = async (req, res, next) => {
 
 
 
-    exports.changeApartments = async (req, res, next) => {
+    exports.updateApartmentsInfo = async (req, res, next) => {
         try {
           const { _id } = req.params;
           const ApartmentsUpdate = await Apartments.findOneAndUpdate({ _id: _id }, req.body, {

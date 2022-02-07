@@ -2,13 +2,14 @@
 const express = require ("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
-const router = require("./routes/apartments.route")
+const apartrRouter = require("./routes/apartments.route")
+const userRouter = require('./routes/users.route')
 
 
 require("dotenv").config();
 
 const app = express();
-const PORT = 2022;
+const PORT = process.env.PORT;
 
 
 app.use(express.json());
@@ -34,7 +35,8 @@ console.log("Gingo");
 }
 connectdb();
 
-app.use("/api/v1", router)
+app.use("/api/v1/apartment", apartrRouter)
+app.use('/api/v1/user', userRouter)
 
 app.listen(PORT, () => {
   console.log(`App is listening on PORT ${PORT}`);
