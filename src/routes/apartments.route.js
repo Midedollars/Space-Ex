@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post('/newApartment', multer.single('aptImage'), apartments.addApartments)
 router.patch('/updateApartment',apartments.updateApartmentsInfo)
-router.get('/fetchApartment', apartments.fetchSingleApartments)
-router.get('/fetchApartment', apartments.fetchApartments)
+router.get('/fetchApartment/:emailAddress', apartments.fetchSingleApartments)
+router.get('/fetchApartments', apartments.fetchApartments)
 
 module.exports = router;

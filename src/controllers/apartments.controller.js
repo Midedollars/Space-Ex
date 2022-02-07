@@ -34,7 +34,7 @@ exports.addApartments = async (req, res, next) => {
     exports.updateApartmentsInfo = async (req, res, next) => {
         try {
           const { _id } = req.params;
-          const ApartmentsUpdate = await Apartments.findOneAndUpdate({ _id: _id }, req.body, {
+          const ApartmentsUpdate = await apartments.findOneAndUpdate({ _id: _id }, req.body, {
             new: true,
           });
           return res.status(200).json({
@@ -52,14 +52,12 @@ exports.addApartments = async (req, res, next) => {
 
 
 
-
     exports.fetchSingleApartments = async (req, res, next) => {
         try {
 
-          const { desc } = req.params;
-          console.log(desc);
+          const { emailAddress } = req.params;
          
-          const singleApartments = await Apartments.findOne({ emailAddress: desc });
+          const singleApartments = await apartments.findOne({emailAddress});
           if (!singleApartments) {
             return res.status(404).json({
               success: false,
@@ -69,7 +67,7 @@ exports.addApartments = async (req, res, next) => {
           }
           return res.status(200).json({
             success: true,
-            singleApartment,
+            singleApartments,
           });
         } catch (error) {
           console.log(error);
@@ -85,10 +83,10 @@ exports.addApartments = async (req, res, next) => {
 
     exports.fetchApartments = async (req, res, next) => {
         try {
-          const apartments = await Apartments.find();
+          const allApartments = await apartments.find();
           return res.status(200).json({
             success: true,
-            apartments,
+            allApartments,
           });
         } catch (error) {
           return res.status(500).json({
