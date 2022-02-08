@@ -4,10 +4,10 @@ exports.addApartments = async (req, res, next) => {
     try {
         const {emailAddress, apartmentName, address} = req.body;
 
-        const {path} = req.file
+        const {filename} = req.file
 
         const newApartment = new apartments({ 
-            aptImage:path, 
+            aptImage:filename, 
             emailAddress, 
             apartmentName, 
             address

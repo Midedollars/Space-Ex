@@ -34,7 +34,7 @@ exports.addUsers = async (req, res, next) => {
     
             const count = await users.countDocuments()
             
-            return res.status(201).json({
+            return res.status(200).json({
                 success: true,
                 count,
             })
