@@ -1,12 +1,16 @@
-const apartments = require("../models/apartments.model");
+const Apartment = require("../models/apartments.model");
 
 exports.addApartments = async (req, res, next) => {
     try {
         const {emailAddress, apartmentName, address} = req.body;
+        const {filename} = req.file;
+        if (!emailAddress || !apartmentName || !address || !filename) {
+        return res.status(400).json({
+         message: "Please fill all the required field",
+        });
+        }
 
-        const {filename} = req.file
-
-        const newApartment = new apartments({ 
+        const newApartment = new Apartment({ 
             aptImage:filename, 
             emailAddress, 
             apartmentName, 
@@ -15,22 +19,22 @@ exports.addApartments = async (req, res, next) => {
         await newApartment.save();
         
         return res.status(201).json({
-            success: true,
+            // success: true,
             newApartment,
-        })
+        });
      }
      catch (error) {
        console.log(error)
          return res.status(500).json({
              success: false,
-             message: "error",
+             message: error.message,
          })
         
         }
     }
 
 
-
+// update apartment
     exports.updateApartmentsInfo = async (req, res, next) => {
         try {
           const { _id } = req.params;
@@ -38,14 +42,14 @@ exports.addApartments = async (req, res, next) => {
             new: true,
           });
           return res.status(200).json({
-            success: true,
+            // success: true,
             ApartmentsUpdate,
           });
         } catch (error) {
           console.log(error);
           return res.status(500).json({
             success: false,
-            message: "Server Error",
+            message: error.message,
           });
         }
       };
@@ -60,8 +64,6 @@ exports.addApartments = async (req, res, next) => {
           const singleApartments = await apartments.findOne({emailAddress});
           if (!singleApartments) {
             return res.status(404).json({
-              success: false,
-              unique: true,
               message: "Apartment Not Found!",
             });
           }
@@ -73,7 +75,7 @@ exports.addApartments = async (req, res, next) => {
           console.log(error);
           return res.status(500).json({
             success: false,
-            message: "Server Error",
+            message: error.messsage,
           });
         }
       };
@@ -91,7 +93,7 @@ exports.addApartments = async (req, res, next) => {
         } catch (error) {
           return res.status(500).json({
             success: false,
-            message: "Server Error",
+            message: error.message,
           });
         }
       };

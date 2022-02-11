@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 
-
-const createSchema = new Schema({
+// create a schema for an apartment
+const apartmentSchema = new Schema({
  
 
   emailAddress: {
@@ -26,7 +26,7 @@ const createSchema = new Schema({
 });
 
 // converting the schema to a model
-const apartmentModel = mongoose.model("Apartments", createSchema);
+const apartmentModel = mongoose.model("Apartments", apartmentSchema);
 
 // to make the mmodel accessible to other files
 module.exports = apartmentModel;
