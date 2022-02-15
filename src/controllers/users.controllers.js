@@ -1,8 +1,16 @@
 const users = require("../models/users.model");
 
+
+// creating data for users
 exports.addUsers = async (req, res, next) => {
     try {
         const {firstName, lastName, email, phoneNumber} = req.body;
+        if (!firstName || !lastName || !email || !phoneNumber) {
+            return res.status(400).json({
+             message: "Please fill all the required field",
+            });
+            }
+    
 
         const newUser = new users({ 
             firstName, 
@@ -27,7 +35,7 @@ exports.addUsers = async (req, res, next) => {
     }
 
 
-
+// count total numbers of registered users
     exports.countUsers = async (req, res, next) => {
         try {
             // const {firstName, lastName, email, phoneNumber} = req.body;

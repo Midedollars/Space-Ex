@@ -1,5 +1,7 @@
 const Apartment = require("../models/apartments.model");
 
+
+// creating data for apartment
 exports.addApartments = async (req, res, next) => {
     try {
         const {emailAddress, apartmentName, address} = req.body;
@@ -55,7 +57,7 @@ exports.addApartments = async (req, res, next) => {
       };
 
 
-
+// getting a single apartment with users unique email address
     exports.fetchSingleApartments = async (req, res, next) => {
         try {
 
@@ -82,7 +84,7 @@ exports.addApartments = async (req, res, next) => {
 
 
 
-
+// getting the data of all registered apartments
     exports.fetchApartments = async (req, res, next) => {
         try {
           const allApartments = await apartments.find();
